@@ -76,3 +76,21 @@
 - `/ready `: {"detail":"Not Found"}
 
 #### Exercise 5.2
+- Requests vẫn hoàn thành:
+`{"answer":"Agent đang hoạt động tốt! (mock response) Hỏi thêm câu hỏi đi nhé."}`
+
+=> Khi shutdown, app không dừng ngay lập tức mà vẫn xử lý xong request đang chạy → không bị mất request giữa chừng.
+
+#### Exercise 5.3
+- Agent vẫn nhớ history 
+- Trước: `{"answer":"Tôi là AI agent được deploy lên cloud. Câu hỏi của bạn đã được nhận."}`
+- Sau: `{"answer":"Agent đang hoạt động tốt! (mock response) Hỏi thêm câu hỏi đi nhé."}`
+
+#### Exercise 5.4
+- Load balancing giúp phân tán request qua nhiều instances thay vì dồn vào một instance. Khi scale lên 3 agents, Nginx sẽ route request ngẫu nhiên hoặc theo round-robin.
+
+- Khi test gửi nhiều request liên tiếp, logs cho thấy các request được xử lý bởi nhiều container → chứng tỏ load balancing hoạt động đúng.
+
+#### Exercise 5.5
+- Sau khi kill instance, request vẫn hoạt động bình thường
+→ chứng tỏ state không phụ thuộc vào instance cụ thể (đã chuyển ra Redis hoặc external storage)
