@@ -14,8 +14,8 @@ from dataclasses import dataclass, field
 @dataclass
 class Settings:
     # Server
-    host: str = field(default_factory=lambda: os.getenv("HOST", "0.0.0.0"))
-    port: int = field(default_factory=lambda: int(os.getenv("PORT", "8000")))
+    host: str = field(default_factory=lambda: os.getenv("HOST", "127.0.0.1"))
+    port: int = field(default_factory=lambda: int(os.getenv("PORT", "9000")))
     debug: bool = field(default_factory=lambda: os.getenv("DEBUG", "false").lower() == "true")
 
     # App

@@ -144,28 +144,34 @@ def health():
     }
 
 
+# @app.get("/ready")
+# def ready():
+#     """
+#     READINESS PROBE — "Agent có sẵn sàng nhận request chưa?"
+
+#     Load balancer dùng endpoint này để quyết định có route
+#     traffic vào instance này không.
+
+#     Trả về 503 khi:
+#     - Đang khởi động (model chưa load xong)
+#     - Đang shutdown
+#     - Database/dependencies chưa connect
+#     """
+#     if not _is_ready:
+#         raise HTTPException(
+#             status_code=503,
+#             detail="Agent not ready. Check back in a few seconds.",
+#         )
+#     return {
+#         "ready": True,
+#         "in_flight_requests": _in_flight_requests,
+#     }
+
 @app.get("/ready")
 def ready():
-    """
-    READINESS PROBE — "Agent có sẵn sàng nhận request chưa?"
-
-    Load balancer dùng endpoint này để quyết định có route
-    traffic vào instance này không.
-
-    Trả về 503 khi:
-    - Đang khởi động (model chưa load xong)
-    - Đang shutdown
-    - Database/dependencies chưa connect
-    """
     if not _is_ready:
-        raise HTTPException(
-            status_code=503,
-            detail="Agent not ready. Check back in a few seconds.",
-        )
-    return {
-        "ready": True,
-        "in_flight_requests": _in_flight_requests,
-    }
+        raise HTTPException(status_code=503, detail="not ready")
+    return {"status": "ready"}
 
 
 # ──────────────────────────────────────────────────────────

@@ -165,7 +165,7 @@ curl http://localhost:8000/ask -X POST \
 
 **Quan sát:** Image size là bao nhiêu?
 ```bash
-docker images my-agent:develop
+c
 ```
 
 ###  Exercise 2.3: Multi-stage build
@@ -538,7 +538,7 @@ signal.signal(signal.SIGTERM, shutdown_handler)
 
 Test:
 ```bash
-python app.py &
+python app.py 
 PID=$!
 
 # Gửi request
